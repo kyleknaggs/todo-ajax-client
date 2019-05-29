@@ -7,9 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p>My first edit to my Create React App boiler plate file.</p>
         <a
           className="App-link"
           href="https://reactjs.org"
