@@ -26,7 +26,9 @@ class App extends Component {
     return (
       <div className="App" >
         <header className="App-header">
-          <Todo/>
+          <Todo
+            text= "This is my first todo. It has many lines so that I can see how it looks just in case I go over."
+          />
         </header>
       </div>
     );
