@@ -4,6 +4,13 @@ import './App.css';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: []
+    };
+  }
+
   componentWillMount(){
     // Create a new request:
     var xhr = new XMLHttpRequest();
@@ -11,7 +18,9 @@ class App extends Component {
     // Add the callback to be fired onreadystatechange:
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        console.log(xhr.responseText);
+        // Conver JSON returned by the server into JavaScript:
+        const todo = JSON.parse(xhr.responseText);
+        console.log(todo);
       }
     }
 
