@@ -40,9 +40,16 @@ class App extends Component {
 
   // Update the todo:
   updateTodo(newTodo) {
-    this.setState({
-      todos: [newTodo]
-    });
+    // Make setState accessible inside of setTimeout:
+    const app = this;
+
+    function updateState(){
+      app.setState({
+        todos: [newTodo]
+      });
+    }
+
+    setTimeout(updateState, 1500);
   }
 
   render(){
