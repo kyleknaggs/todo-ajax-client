@@ -7,36 +7,52 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: [
+        {
+          title: "Loading..."
+        }
+      ]
     };
+
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    // Make updateTodo accessible inside of readystatechange:
+    const app = this;
+
     // Create a new request:
     var xhr = new XMLHttpRequest();
 
     // Add the callback to be fired onreadystatechange:
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        // Conver JSON returned by the server into JavaScript:
-        const todo = JSON.parse(xhr.responseText);
-        console.log(todo);
+        // Convert JSON returned by the server into JavaScript:
+        const newTodo = JSON.parse(xhr.responseText);
+        app.updateTodo(newTodo);
       }
     }
 
-    // Initialize the request:
+    // Initialize and send the request:
     xhr.open("GET", 'https://jsonplaceholder.typicode.com/todos/1');
-    // Send the request:
     xhr.send();
 
   }
 
+  // Update the todo:
+  updateTodo(newTodo) {
+    this.setState({
+      todos: [newTodo]
+    });
+  }
+
   render(){
+    const text = this.state.todos[0].title;
+
     return (
       <div className="App" >
         <header className="App-header">
           <Todo
-            text= "This is my first todo. It has many lines so that I can see how it looks just in case I go over."
+            text= {text}
           />
         </header>
       </div>
