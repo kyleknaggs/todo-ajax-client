@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import Background from './components/Background';
 import Todo from './components/Todo';
 
 class App extends Component {
@@ -55,15 +55,6 @@ class App extends Component {
 
   render(){
     const { todos } = this.state;
-
-    const Background = styled.div`
-      background-color: #282c34;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    `;
 
     return (
       <Background>
