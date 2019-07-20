@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Background from './components/Background';
-import Todo from './components/Todo';
+import TodoList from './components/TodoList';
 
 class App extends Component {
 
@@ -58,14 +58,7 @@ class App extends Component {
 
     return (
       <Background>
-        {todos.map(function(todo){
-          return (
-            <Todo
-              key={todo.id}
-              text={todo.text}
-            />
-          );
-        })}
+        <TodoList todos={todos} />
       </Background>
     );
   }
