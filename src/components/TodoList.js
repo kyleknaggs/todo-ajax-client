@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import Todo from './Todo';
 
 const FlexContainer = styled.div`
-  min-width: 1200px;
-  display: flex;
-  flex-direction: row;
   align-items: center;
+  display: flex;
   justify-content: center;
+  margin:auto;
+  max-width: 1200px;
 `;
 
 const TodoList= ({todos}) => {
