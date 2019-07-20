@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       todos: [
         {
+          id: 0,
           text: "Loading..."
         }
       ]
