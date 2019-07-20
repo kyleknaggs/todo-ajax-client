@@ -1,10 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Todo from './Todo';
 
+const FlexContainer = styled.div`
+  min-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 const TodoList= ({todos}) => {
   return (
-    <Fragment>
+    <FlexContainer>
       {todos.map(function(todo){
         return (
           <Todo
@@ -13,7 +22,7 @@ const TodoList= ({todos}) => {
           />
         );
       })}
-    </Fragment>
+    </FlexContainer>
   );
 };
 
