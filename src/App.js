@@ -49,7 +49,8 @@ class App extends Component {
       });
     }
 
-    setTimeout(updateState, 1500);
+    // Prevent loading screen from disappearing too fast.
+    setTimeout(updateState, 1000);
   }
 
   render(){
