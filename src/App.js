@@ -17,9 +17,8 @@ class App extends Component {
 
   }
 
-  /*
   componentDidMount(){
-    // Make updateTodo accessible inside of onload
+    // Make updateTodo accessible inside of onloadc
     const app = this;
 
     // Create a new request:
@@ -29,30 +28,29 @@ class App extends Component {
     xhr.onload = function () {
       if (this.status === 200) {
         // Convert JSON returned by the server into JavaScript:
-        const newTodo = JSON.parse(xhr.responseText);
-        app.updateTodo(newTodo);
+        const newTodos = JSON.parse(xhr.responseText);
+        app.updateTodos(newTodos);
       }
     }
 
     // Initialize and send the request:
-    xhr.open("GET", 'http://localhost:3000/todos/1');
+    xhr.open("GET", 'http://localhost:3000/todos/');
     xhr.send();
 
   }
 
-  updateTodo(newTodo) {
+  updateTodos(newTodos) {
     // Make setState accessible inside of setTimeout:
     const app = this;
 
     function updateState(){
       app.setState({
-        todos: [newTodo]
+        todos: newTodos
       });
     }
 
     setTimeout(updateState, 1500);
   }
-  */
 
   render(){
     const { todos } = this.state;
