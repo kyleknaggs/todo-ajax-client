@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       todos: [
         {
-          title: "Loading..."
+          text: "Loading..."
         }
       ]
     };
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // Make updateTodo accessible inside of readystatechange:
+    // Make updateTodo accessible inside of onload
     const app = this;
 
     // Create a new request:
@@ -33,12 +33,11 @@ class App extends Component {
     }
 
     // Initialize and send the request:
-    xhr.open("GET", 'https://jsonplaceholder.typicode.com/todos/1');
+    xhr.open("GET", 'http://localhost:3000/todos/1');
     xhr.send();
 
   }
 
-  // Update the todo:
   updateTodo(newTodo) {
     // Make setState accessible inside of setTimeout:
     const app = this;
@@ -53,7 +52,7 @@ class App extends Component {
   }
 
   render(){
-    const text = this.state.todos[0].title;
+    const text = this.state.todos[0].text;
 
     return (
       <div className="App" >
