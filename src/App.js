@@ -17,6 +17,7 @@ class App extends Component {
 
   }
 
+  /*
   componentDidMount(){
     // Make updateTodo accessible inside of onload
     const app = this;
@@ -51,16 +52,22 @@ class App extends Component {
 
     setTimeout(updateState, 1500);
   }
+  */
 
   render(){
-    const text = this.state.todos[0].text;
+    const { todos } = this.state;
 
     return (
       <div className="App" >
         <header className="App-header">
-          <Todo
-            text= {text}
-          />
+          {todos.map(function(todo){
+            return (
+              <Todo
+                key={todo.id}
+                text={todo.text}
+              />
+            );
+          })}
         </header>
       </div>
     );
