@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 const Background = styled.div`
   background: #FFD42E;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const Text = styled.p`
