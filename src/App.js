@@ -57,8 +57,7 @@ class App extends Component {
     const { todos } = this.state;
 
     return (
-      <div className="App" >
-        <header className="App-header">
+      <div className="background">
           {todos.map(function(todo){
             return (
               <Todo
@@ -67,8 +66,7 @@ class App extends Component {
               />
             );
           })}
-        </header>
-      </div>
+        </div>
     );
   }
 }
