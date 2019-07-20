@@ -23,9 +23,9 @@ class App extends Component {
     // Create a new request:
     var xhr = new XMLHttpRequest();
 
-    // Add the callback to be fired onreadystatechange:
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
+    // Callback to be fired after the request is successfull
+    xhr.onload = function () {
+      if (this.status === 200) {
         // Convert JSON returned by the server into JavaScript:
         const newTodo = JSON.parse(xhr.responseText);
         app.updateTodo(newTodo);
