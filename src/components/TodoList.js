@@ -6,6 +6,7 @@ import Todo from './Todo';
 const FlexContainer = styled.div`
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin:auto;
   max-width: 1200px;
