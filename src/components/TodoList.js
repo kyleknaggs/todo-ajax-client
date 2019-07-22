@@ -20,16 +20,18 @@ const FlexContainer = styled.div`
 
 ;
 
-const TodoList= ({addTodo, todos}) => {
+const TodoList = ({ addTodo, deleteTodo, todos}) => {
   return (
     <Fragment>
       <FlexContainer>
-        <Button onClick={addTodo} type="add"/>
+        <Button id="newTodo" onClick={addTodo} type="add"/>
       </FlexContainer>
       <FlexContainer>
         {todos.map(function (todo) {
           return (
             <Todo
+              deleteTodo={deleteTodo}
+              id={String(todo.id)}
               key={todo.id}
               text={todo.text}
             />
@@ -42,6 +44,7 @@ const TodoList= ({addTodo, todos}) => {
 
 TodoList.propTypes = {
   addTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired

@@ -20,7 +20,7 @@ const Text = styled.p`
   text-align: left;
 `;
 
-const Todo = ({text}) => {
+const Todo = ({deleteTodo, id, text}) => {
   // Ensures text does not extend beyond space provided by Post-it:
   let hasTooManyCharacters = false;
   const textLimit = 40;
@@ -38,12 +38,14 @@ const Todo = ({text}) => {
   return(
     <Background>
       <Text>{textToDisplay}</Text>
-      <Button/>
+      <Button id={id} onClick={deleteTodo} />
     </Background>
   );
 };
 
 Todo.propTypes = {
+  deleteTodo: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 }
 

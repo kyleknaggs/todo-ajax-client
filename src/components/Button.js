@@ -16,15 +16,24 @@ const StyledButton = styled.button`
   }
 `
 
-const Button = ({onClick, type}) => {
+const Button = ({id, onClick, type}) => {
   let text = "x"
 
   if(type === "add"){
     text = "+";
   }
 
+  function handleClick(e){
+    if(type==="add"){
+      onClick();
+    }else{
+      // Pass id if purpose of click is to delete a todo
+      onClick(id);
+    }
+  }
+
   return(
-    <StyledButton onClick={onClick} type={type}>{text}</StyledButton>
+    <StyledButton onClick={handleClick} type={type}>{text}</StyledButton>
   );
 };
 
@@ -33,6 +42,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
+  id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   type: PropTypes.string
 }
