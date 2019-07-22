@@ -15,7 +15,7 @@ const TextDiv = styled.div`
   margin: 25px;
 `;
 
-const DisplayTodo = ({deleteTodo, id, number, text}) => {
+const DisplayTodo = ({deleteTodo, toggleEditing, id, number, text}) => {
   // Ensures text does not extend beyond space provided by Post-it:
   let hasTooManyCharacters = false;
   const textLimit = 40;
@@ -31,7 +31,7 @@ const DisplayTodo = ({deleteTodo, id, number, text}) => {
   }
 
   function handleDoubleClick() {
-    console.log("I just got double clicked.")
+    toggleEditing();
   }
 
   return(
@@ -50,6 +50,7 @@ DisplayTodo.defaultProps = {
 
 DisplayTodo.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
+  toggleEditing: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired

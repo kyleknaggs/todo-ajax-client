@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import DisplayTodo from './DisplayTodo';
@@ -10,21 +10,45 @@ const Background = styled.div`
   margin-bottom: 20px;
 `;
 
-const Todo = ({deleteTodo, id, number, text}) => {
-  return(
-    <Background>
-      {number === "2" ?
-        <EditTodo text={text} id={id} /> :
-        <DisplayTodo
-          deleteTodo={deleteTodo}
-          id={id}
-          number={number}
-          text={text}
-        />
-      }
-    </Background>
-  );
-};
+class Todo extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isEditing: false
+    }
+    this.toggleEditing = this.toggleEditing.bind(this);
+  }
+
+  toggleEditing(){
+    const { isEditing } = this.state;
+    this.setState({
+      isEditing: !isEditing
+    })
+  }
+
+  render(){
+    const {
+      toggleEditing,
+      props: {deleteTodo, id, number, text},
+      state: { isEditing }
+    } = this;
+
+    return (
+      <Background>
+        {isEditing ?
+          <EditTodo id={id} text={text} /> :
+          <DisplayTodo
+            toggleEditing={toggleEditing}
+            deleteTodo={deleteTodo}
+            id={id}
+            number={number}
+            text={text}
+          />
+        }
+      </Background>
+    );
+  }
+}
 
 Todo.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
