@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import DisplayTodo from './DisplayTodo';
 import Button from './Button';
 
 const Background = styled.div`
   background: #FFD42E;
   margin-right: 20px;
   margin-bottom: 20px;
-`;
-
-const Text = styled.p`
-  font-family: Permanent Marker;
-  font-size: 32px;
-  line-height: 48px;
 `;
 
 const TextDiv = styled.div`
@@ -32,38 +27,30 @@ const TextArea = styled.textarea`
 `;
 
 const Todo = ({deleteTodo, id, number, text}) => {
-  // Ensures text does not extend beyond space provided by Post-it:
-  let hasTooManyCharacters = false;
-  const textLimit = 40;
-
-  if (text.length > textLimit){
-    hasTooManyCharacters = true;
-  }
-
-  let textToDisplay = `${number}) ${text}`;
-
-  if(hasTooManyCharacters){
-    textToDisplay = textToDisplay.substring(0, textLimit) + "...";
-  }
-
-  function handleDoubleClick(){
-    console.log("I just got double clicked.")
-  }
-
   function saveTodo(){
     console.log("Save todo.")
   }
 
+  const editTodo = (
+    <Fragment>
+      <TextDiv>
+        <TextArea value={text} />
+      </TextDiv>
+      <Button type="save" id={id} onClick={saveTodo} />
+    </Fragment>
+  );
+
   return(
     <Background>
-      <TextDiv>
-        {number === "2" ?
-          <TextArea value={textToDisplay} /> :
-          <Text onDoubleClick={handleDoubleClick}>{textToDisplay}</Text>}
-      </TextDiv>
       {number === "2" ?
-        <Button type="save" id={id} onClick={saveTodo} /> :
-        <Button id={id} onClick={deleteTodo} />}
+        editTodo :
+        <DisplayTodo
+          deleteTodo={deleteTodo}
+          id={id}
+          number={number}
+          text={text}
+        />
+      }
     </Background>
   );
 };
