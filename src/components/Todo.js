@@ -50,6 +50,10 @@ const Todo = ({deleteTodo, id, number, text}) => {
     console.log("I just got double clicked.")
   }
 
+  function saveTodo(){
+    console.log("Save todo.")
+  }
+
   return(
     <Background>
       <TextDiv>
@@ -57,7 +61,9 @@ const Todo = ({deleteTodo, id, number, text}) => {
           <TextArea value={textToDisplay} /> :
           <Text onDoubleClick={handleDoubleClick}>{textToDisplay}</Text>}
       </TextDiv>
-      {number === "2" ? <Button type="save" id={id} onClick={"saveTodo"} /> : <Button id={id} onClick={deleteTodo} />}
+      {number === "2" ?
+        <Button type="save" id={id} onClick={saveTodo} /> :
+        <Button id={id} onClick={deleteTodo} />}
     </Background>
   );
 };
