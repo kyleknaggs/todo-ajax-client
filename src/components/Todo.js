@@ -36,6 +36,15 @@ class Todo extends Component{
     });
   }
 
+  componentDidUpdate(prevProps){
+    const { props: {text} } = this;
+    if (text !== prevProps.text){
+      this.setState({
+        isEditing: false
+      })
+    }
+  }
+
   render(){
     const {
       toggleEditing,
