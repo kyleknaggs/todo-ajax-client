@@ -16,7 +16,7 @@ const StyledButton = styled.button`
   }
 `
 
-const Button = ({id, onClick, type}) => {
+const Button = ({id, inputText, onClick, type}) => {
   let text = "x"
   let bg = {
     color: "#FF4444",
@@ -42,9 +42,10 @@ const Button = ({id, onClick, type}) => {
   function handleClick(e){
     if(type==="add"){
       onClick();
-    }else{
-      // Pass id if purpose of click is to delete a todo
+    }else if(type==="delete"){
       onClick(id);
+    }else{
+      onClick(id, inputText);
     }
   }
 
@@ -54,12 +55,14 @@ const Button = ({id, onClick, type}) => {
 };
 
 Button.defaultProps = {
+  inputText: "",
   type: "delete"
 }
 
 Button.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  inputText: PropTypes.string,
   type: PropTypes.string
 }
 

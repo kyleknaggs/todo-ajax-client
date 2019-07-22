@@ -40,14 +40,19 @@ class Todo extends Component{
     const {
       toggleEditing,
       updateText,
-      props: {deleteTodo, id, number, text},
+      props: { deleteTodo, id, number, saveTodo, text },
       state: { isEditing, inputText }
     } = this;
 
     return (
       <Background>
         {isEditing ?
-          <EditTodo id={id} inputText={inputText} updateText={updateText} /> :
+          <EditTodo
+            id={id}
+            inputText={inputText}
+            saveTodo={saveTodo}
+            updateText={updateText}
+          /> :
           <DisplayTodo
             toggleEditing={toggleEditing}
             deleteTodo={deleteTodo}
@@ -65,6 +70,7 @@ Todo.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
+  saveTodo: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired
 }
 

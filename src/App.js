@@ -16,6 +16,7 @@ class App extends Component {
     };
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.saveTodo = this.saveTodo.bind(this);
   }
 
   // Get the list of todos from the server.
@@ -86,17 +87,42 @@ class App extends Component {
     xhr.send()
   }
 
+  saveTodo(id, inputText){
+    // Make fetchTodos() available inside of .onload()
+    const app = this;
+    const xhr = new XMLHttpRequest();
+    const data = JSON.stringify({
+      text: inputText
+    });
+
+    xhr.onload = function () {
+      // Once todo has been added get new list of todos
+      if (this.status === 200) {
+        app.fetchTodos();
+      }
+    }
+
+    xhr.open("PUT", `http://localhost:3000/todos/${id}`);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(data);
+  }
+
   // Lifecycle methods:
   componentDidMount() {
     this.fetchTodos();
   }
 
   render(){
-    const { addTodo, deleteTodo, state: {todos} } = this;
+    const { addTodo, deleteTodo, saveTodo, state: {todos} } = this;
 
     return (
       <Background>
-        <TodoList addTodo={addTodo} deleteTodo={deleteTodo} todos={todos} />
+        <TodoList
+          addTodo={addTodo}
+          deleteTodo={deleteTodo}
+          saveTodo={saveTodo}
+          todos={todos}
+        />
       </Background>
     );
   }

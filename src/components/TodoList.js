@@ -20,7 +20,7 @@ const FlexContainer = styled.div`
 
 ;
 
-const TodoList = ({ addTodo, deleteTodo, todos}) => {
+const TodoList = ({ addTodo, deleteTodo, saveTodo, todos}) => {
   return (
     <Fragment>
       <FlexContainer>
@@ -32,8 +32,9 @@ const TodoList = ({ addTodo, deleteTodo, todos}) => {
             <Todo
               deleteTodo={deleteTodo}
               id={String(todo.id)}
-              number={String(index+1)}
               key={todo.id}
+              number={String(index+1)}
+              saveTodo={saveTodo}
               text={todo.text}
             />
           );
@@ -46,6 +47,7 @@ const TodoList = ({ addTodo, deleteTodo, todos}) => {
 TodoList.propTypes = {
   addTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
+  saveTodo: PropTypes.func.isRequired,
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired
