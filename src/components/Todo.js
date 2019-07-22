@@ -5,8 +5,7 @@ import Button from './Button';
 
 const Background = styled.div`
   background: #FFD42E;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
   margin-bottom: 20px;
 `;
 

@@ -8,9 +8,14 @@ const FlexContainer = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   margin:auto;
-  max-width: 1200px;
+  max-width: 320px;
+  @media only screen and (min-width: 680px) {
+    max-width: 640px;
+  }
+  @media only screen and (min-width: 1000px) {
+    max-width: 960px;
+  }
 `;
 
 ;
