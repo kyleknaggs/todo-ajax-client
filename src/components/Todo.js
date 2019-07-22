@@ -45,13 +45,16 @@ const Todo = ({deleteTodo, id, number, text}) => {
     textToDisplay = textToDisplay.substring(0, textLimit) + "...";
   }
 
+  function handleDoubleClick(){
+    console.log("I just got double clicked.")
+  }
+
   return(
     <Background>
       <Div>
         {number === "2" ?
           <TextArea value={textToDisplay} /> :
-          <Text>{textToDisplay}</Text>
-        }
+          <Text onDoubleClick={handleDoubleClick}>{textToDisplay}</Text>}
       </Div>
       <Button id={id} onClick={deleteTodo} />
     </Background>
