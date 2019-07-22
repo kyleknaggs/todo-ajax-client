@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Button from './Button';
 import Todo from './Todo';
 
 const FlexContainer = styled.div`
@@ -12,18 +13,25 @@ const FlexContainer = styled.div`
   max-width: 1200px;
 `;
 
+;
+
 const TodoList= ({todos}) => {
   return (
-    <FlexContainer>
-      {todos.map(function(todo){
-        return (
-          <Todo
-            key={todo.id}
-            text={todo.text}
-          />
-        );
-      })}
-    </FlexContainer>
+    <Fragment>
+      <FlexContainer>
+        <Button type="add"/>
+      </FlexContainer>
+      <FlexContainer>
+        {todos.map(function (todo) {
+          return (
+            <Todo
+              key={todo.id}
+              text={todo.text}
+            />
+          );
+        })}
+      </FlexContainer>
+    </Fragment>
   );
 };
 
