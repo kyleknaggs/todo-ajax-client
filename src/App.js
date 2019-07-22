@@ -18,34 +18,31 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // Make updateTodo accessible inside of onloadc
+    // Make updateTodo accessible inside of onload
     const app = this;
 
-    // Create a new request:
     var xhr = new XMLHttpRequest();
 
-    // Callback to be fired after the request is successfull
     xhr.onload = function () {
       if (this.status === 200) {
-        // Convert JSON returned by the server into JavaScript:
-        const newTodos = JSON.parse(xhr.responseText);
-        app.updateTodos(newTodos);
+        const todos = JSON.parse(xhr.responseText);
+        app.loadTodos(todos);
       }
     }
 
-    // Initialize and send the request:
     xhr.open("GET", 'http://localhost:3000/todos/');
     xhr.send();
 
   }
 
-  updateTodos(newTodos) {
+  // Update the application state with the list of fetched todos.
+  loadTodos(todos) {
     // Make setState accessible inside of setTimeout:
     const app = this;
 
     function updateState(){
       app.setState({
-        todos: newTodos
+        todos: todos
       });
     }
 
