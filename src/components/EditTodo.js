@@ -19,15 +19,20 @@ const TextArea = styled.textarea`
   height: 170px;
 `;
 
-const DisplayTodo = ({id, text}) => {
+const DisplayTodo = ({id, inputText, updateText}) => {
   function saveTodo() {
     console.log("Save todo.")
+  }
+
+  function handleChange(e){
+    const {target: {value}} = e;
+    updateText(value);
   }
 
   return(
     <Fragment>
       <TextDiv>
-        <TextArea value={text} />
+        <TextArea onChange={handleChange} value={inputText} />
       </TextDiv>
       <Button type="save" id={id} onClick={saveTodo} />
     </Fragment>
@@ -40,7 +45,8 @@ DisplayTodo.defaultProps = {
 
 DisplayTodo.propTypes = {
   id: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
+  inputText: PropTypes.string.isRequired,
+  updateText: PropTypes.func.isRequired
 }
 
 export default DisplayTodo;

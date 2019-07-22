@@ -13,30 +13,41 @@ const Background = styled.div`
 class Todo extends Component{
   constructor(props){
     super(props);
+    const { props: { text } } = this;
     this.state = {
+      inputText: text,
       isEditing: false
     }
+    // Bind toggleEditing() and updateText() so they can modify state.
     this.toggleEditing = this.toggleEditing.bind(this);
+    this.updateText = this.updateText.bind(this);
   }
 
   toggleEditing(){
     const { isEditing } = this.state;
     this.setState({
       isEditing: !isEditing
-    })
+    });
+  }
+
+  updateText(inputText){
+    this.setState({
+      inputText: inputText
+    });
   }
 
   render(){
     const {
       toggleEditing,
+      updateText,
       props: {deleteTodo, id, number, text},
-      state: { isEditing }
+      state: { isEditing, inputText }
     } = this;
 
     return (
       <Background>
         {isEditing ?
-          <EditTodo id={id} text={text} /> :
+          <EditTodo id={id} inputText={inputText} updateText={updateText} /> :
           <DisplayTodo
             toggleEditing={toggleEditing}
             deleteTodo={deleteTodo}
