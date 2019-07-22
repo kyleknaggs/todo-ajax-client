@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   // Get the list of todos from the server.
-  fetchTodos(){
+  fetchTodos(isFirstLoad){
     // Make loadTodos accessible inside of onload
     const app = this;
     var xhr = new XMLHttpRequest();
@@ -28,7 +28,7 @@ class App extends Component {
     xhr.onload = function () {
       if (this.status === 200) {
         const todos = JSON.parse(xhr.responseText);
-        app.loadTodos(todos);
+        app.loadTodos(todos, isFirstLoad);
       }
     }
 
@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   // Update the application state with the most recent list of todos.
-  loadTodos(todos) {
+  loadTodos(todos, isFirstLoad) {
     // Make setState accessible inside of setTimeout:
     const app = this;
 
@@ -48,7 +48,12 @@ class App extends Component {
     }
 
     // Prevent loading screen from disappearing too fast.
-    setTimeout(updateState, 1000);
+    if(isFirstLoad){
+      setTimeout(updateState, 1500);
+    }else{
+      updateState();
+    }
+
   }
 
   addTodo(){
@@ -109,7 +114,7 @@ class App extends Component {
 
   // Lifecycle methods:
   componentDidMount() {
-    this.fetchTodos();
+    this.fetchTodos(true);
   }
 
   render(){
