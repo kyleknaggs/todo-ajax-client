@@ -28,6 +28,7 @@ const TextArea = styled.textarea`
   line-height: 48px;
   padding: 0px;
   width: 250px;
+  height: 170px;
 `;
 
 const Todo = ({deleteTodo, id, number, text}) => {
