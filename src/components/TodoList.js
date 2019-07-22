@@ -27,11 +27,12 @@ const TodoList = ({ addTodo, deleteTodo, todos}) => {
         <Button id="newTodo" onClick={addTodo} type="add"/>
       </FlexContainer>
       <FlexContainer>
-        {todos.map(function (todo) {
+        {todos.map(function (todo, index) {
           return (
             <Todo
               deleteTodo={deleteTodo}
               id={String(todo.id)}
+              number={String(index+1)}
               key={todo.id}
               text={todo.text}
             />

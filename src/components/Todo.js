@@ -20,7 +20,7 @@ const Text = styled.p`
   text-align: left;
 `;
 
-const Todo = ({deleteTodo, id, text}) => {
+const Todo = ({deleteTodo, id, number, text}) => {
   // Ensures text does not extend beyond space provided by Post-it:
   let hasTooManyCharacters = false;
   const textLimit = 40;
@@ -29,7 +29,7 @@ const Todo = ({deleteTodo, id, text}) => {
     hasTooManyCharacters = true;
   }
 
-  let textToDisplay = text;
+  let textToDisplay = `${number}) ${text}`;
 
   if(hasTooManyCharacters){
     textToDisplay = text.substring(0, textLimit) + "...";
@@ -46,6 +46,7 @@ const Todo = ({deleteTodo, id, text}) => {
 Todo.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 }
 
