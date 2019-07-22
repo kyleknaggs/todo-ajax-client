@@ -42,7 +42,7 @@ const Todo = ({deleteTodo, id, number, text}) => {
   let textToDisplay = `${number}) ${text}`;
 
   if(hasTooManyCharacters){
-    textToDisplay = text.substring(0, textLimit) + "...";
+    textToDisplay = textToDisplay.substring(0, textLimit) + "...";
   }
 
   return(
