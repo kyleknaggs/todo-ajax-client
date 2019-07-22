@@ -40,7 +40,8 @@ class Todo extends Component{
     const { props: {text} } = this;
     if (text !== prevProps.text){
       this.setState({
-        isEditing: false
+        isEditing: false,
+        inputText: text
       })
     }
   }
