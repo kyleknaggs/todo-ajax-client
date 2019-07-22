@@ -15,7 +15,7 @@ const Text = styled.p`
   line-height: 48px;
 `;
 
-const Div = styled.div`
+const TextDiv = styled.div`
   height: 170px;
   width: 250px;
   margin: 25px;
@@ -52,12 +52,12 @@ const Todo = ({deleteTodo, id, number, text}) => {
 
   return(
     <Background>
-      <Div>
+      <TextDiv>
         {number === "2" ?
           <TextArea value={textToDisplay} /> :
           <Text onDoubleClick={handleDoubleClick}>{textToDisplay}</Text>}
-      </Div>
-      <Button id={id} onClick={deleteTodo} />
+      </TextDiv>
+      {number === "2" ? <Button type="save" id={id} onClick={"saveTodo"} /> : <Button id={id} onClick={deleteTodo} />}
     </Background>
   );
 };

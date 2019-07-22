@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
-  background: ${props => props.type === "add" ? "#00C851" : "#FF4444" };
+  background: ${props => props.type === "delete" ? "#FF4444" :  "#00C851" };
   border: none;
   cursor: pointer;
   font-family: Permanent Marker;
   font-size: 32px;
   margin-bottom: 20px;
-  margin-left: ${props => props.type === "add" ? "0px" : "20px" };
+  margin-left: ${props => props.type === "add" ? "0px" : "20px"};
   padding: 5px 20px;
   :hover{
-    background: ${props => props.type === "add" ? "#007E33" : "#CC0000" };
+    background: ${props => props.type === "delete" ? "#CC0000" : "#007E33"};
   }
 `
 
@@ -21,6 +21,10 @@ const Button = ({id, onClick, type}) => {
 
   if(type === "add"){
     text = "+";
+  }
+
+  if(type === "save"){
+    text = "Save";
   }
 
   function handleClick(e){
@@ -38,7 +42,7 @@ const Button = ({id, onClick, type}) => {
 };
 
 Button.defaultProps = {
-  type: ""
+  type: "delete"
 }
 
 Button.propTypes = {
