@@ -10,14 +10,24 @@ const Background = styled.div`
 `;
 
 const Text = styled.p`
+  font-family: Permanent Marker;
+  font-size: 32px;
+  line-height: 48px;
+`;
+
+const Div = styled.div`
   height: 170px;
   width: 250px;
   margin: 25px;
+`;
+
+const TextArea = styled.textarea`
+  border: none;
   font-family: Permanent Marker;
-  color: black;
   font-size: 32px;
   line-height: 48px;
-  text-align: left;
+  padding: 0px;
+  width: 250px;
 `;
 
 const Todo = ({deleteTodo, id, number, text}) => {
@@ -37,7 +47,12 @@ const Todo = ({deleteTodo, id, number, text}) => {
 
   return(
     <Background>
-      <Text>{textToDisplay}</Text>
+      <Div>
+        {number === "2" ?
+          <TextArea value={textToDisplay} /> :
+          <Text>{textToDisplay}</Text>
+        }
+      </Div>
       <Button id={id} onClick={deleteTodo} />
     </Background>
   );
