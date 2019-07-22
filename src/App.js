@@ -14,7 +14,7 @@ class App extends Component {
         }
       ]
     };
-
+    this.addTodo = this.addTodo.bind(this);
   }
 
   // Get the list of todos from the server.
@@ -49,10 +49,24 @@ class App extends Component {
     setTimeout(updateState, 1000);
   }
 
-  addTodos(){
-    // Add todo to list
-    // Get new list of todos
-    // Load the new list of todos into the application
+  addTodo(){
+    // Make fetchTodos() available inside of .onload()
+    const app = this;
+    const xhr = new XMLHttpRequest();
+    const data = JSON.stringify({
+      text: "New todo"
+    });
+
+    xhr.onload = function () {
+      // Once todo has been added get new list of todos
+      if (this.status === 201) {
+        app.fetchTodos();
+      }
+    }
+
+    xhr.open("POST", 'http://localhost:3000/todos/');
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(data);
   }
 
   // Lifecycle methods:
@@ -61,11 +75,11 @@ class App extends Component {
   }
 
   render(){
-    const { todos } = this.state;
+    const { addTodo, state: {todos} } = this;
 
     return (
       <Background>
-        <TodoList todos={todos} />
+        <TodoList addTodo={addTodo} todos={todos} />
       </Background>
     );
   }

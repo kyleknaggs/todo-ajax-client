@@ -20,11 +20,11 @@ const FlexContainer = styled.div`
 
 ;
 
-const TodoList= ({todos}) => {
+const TodoList= ({addTodo, todos}) => {
   return (
     <Fragment>
       <FlexContainer>
-        <Button type="add"/>
+        <Button onClick={addTodo} type="add"/>
       </FlexContainer>
       <FlexContainer>
         {todos.map(function (todo) {
@@ -41,6 +41,7 @@ const TodoList= ({todos}) => {
 };
 
 TodoList.propTypes = {
+  addTodo: PropTypes.func.isRequired,
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired

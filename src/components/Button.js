@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   padding: 5px 20px;
 `
 
-const Button = ({type}) => {
+const Button = ({onClick, type}) => {
   let text = "x"
 
   if(type === "add"){
@@ -20,7 +20,7 @@ const Button = ({type}) => {
   }
 
   return(
-    <StyledButton type={type}>{text}</StyledButton>
+    <StyledButton onClick={onClick} type={type}>{text}</StyledButton>
   );
 };
 
@@ -29,6 +29,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
   type: PropTypes.string
 }
 
